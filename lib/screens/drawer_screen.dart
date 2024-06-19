@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:ayurvedic_centre/screens/branch_screen.dart';
+import 'package:ayurvedic_centre/screens/treatment_screen.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -26,7 +27,7 @@ class MyDrawer extends StatelessWidget {
           ListTile(
             title: Text("Treatment List"),
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>BranchScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>TreatmentScreen()));
 
             },
           ),

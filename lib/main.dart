@@ -2,6 +2,7 @@ import 'package:ayurvedic_centre/screens/branch_screen.dart';
 import 'package:ayurvedic_centre/screens/home.dart';
 import 'package:ayurvedic_centre/screens/login.dart';
 import 'package:ayurvedic_centre/screens/reg_patient.dart';
+import 'package:ayurvedic_centre/screens/treatment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/auth_provider.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
             HomeScreen.routeName: (ctx) => HomeScreen(),
             RegisterPatientScreen.routeName: (ctx) => RegisterPatientScreen(),
             BranchScreen.routeName: (ctx) => BranchScreen(),
+            TreatmentScreen.routeName:(ctx)=> TreatmentScreen(),
 
           },
         ),

@@ -49,7 +49,7 @@ class PatientProvider with ChangeNotifier {
     required int branch,
     required List<int> treatments,
   }) async {
-    final url = 'https://flutter-amr.noviindus.in/api/PatientUpdate';
+    const url = 'https://flutter-amr.noviindus.in/api/PatientUpdate';
     try {
       final response = await http.post(
         Uri.parse(url),
@@ -59,7 +59,7 @@ class PatientProvider with ChangeNotifier {
         },
         body: json.encode({
           'name': name,
-          'executive': executive,
+          'excecutive': executive,
           'payment': payment,
           'phone': phone,
           'address': address,
@@ -78,7 +78,6 @@ class PatientProvider with ChangeNotifier {
       if (response.statusCode != 200) {
         throw Exception('Failed to register patient');
       }
-      // Update local patients list or notify listeners if needed
     } catch (error) {
       throw error;
     }

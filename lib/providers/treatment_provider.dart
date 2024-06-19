@@ -18,8 +18,9 @@ class TreatmentProvider with ChangeNotifier {
     );
 
     if (response.statusCode == 200) {
-      final List<dynamic> data = json.decode(response.body);
-      _treatments = data.map((treatmentData) => Treatment.fromJson(treatmentData)).toList();
+      final Map<String, dynamic> jsonData = json.decode(response.body);
+      final List<dynamic> treatmentsData = jsonData['treatments'];
+      _treatments = treatmentsData.map((treatmentData) => Treatment.fromJson(treatmentData)).toList();
       notifyListeners();
     } else {
       throw Exception('Failed to load treatments');

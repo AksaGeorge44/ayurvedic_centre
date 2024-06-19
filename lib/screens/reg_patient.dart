@@ -55,7 +55,6 @@ class RegisterPatientScreen extends StatelessWidget {
           branch: _branch,
           treatments: _selectedTreatments,
         );
-        // Navigate back after successful registration
         Navigator.of(context).pop();
       } catch (error) {
         showDialog(
@@ -152,7 +151,6 @@ class RegisterPatientScreen extends StatelessWidget {
                       decoration: InputDecoration(labelText: 'Date & Time'),
                       onSaved: (value) => _dateTime = value!,
                       validator: (value) => value!.isEmpty ? 'Please enter date and time' : null,
-                      keyboardType: TextInputType.datetime,
                     ),
                     DropdownButtonFormField(
                       items: branchProvider.branches
