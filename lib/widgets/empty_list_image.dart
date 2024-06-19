@@ -7,7 +7,7 @@ class EmptyListImage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Image.asset('assets/images/empty_list.png', height: 200), // Add your image path here
+          Image.asset('assets/images/empty_list.png', height: 200),
           SizedBox(height: 20),
           Text(
             'No Patients Found',

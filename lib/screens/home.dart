@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> fetchData() async {
     try {
       final url = Uri.parse('https://flutter-amr.noviindus.in/api/PatientList');
-      final token = Provider.of<AuthProvider>(context, listen: false).token; // Get the authentication token
+      final token = Provider.of<AuthProvider>(context, listen: false).token;
       final response = await http.get(
         url,
         headers: {

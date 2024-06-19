@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/branch_provider.dart';
-import '../providers/auth_provider.dart'; // Assuming you have an AuthProvider for token management
-
+import '../providers/auth_provider.dart';
 class BranchScreen extends StatelessWidget {
   static const routeName = '/branches';
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false); // Assuming you have an AuthProvider for token management
-    final token = authProvider.token; // Get the token from AuthProvider
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final token = authProvider.token;
 
     return Scaffold(
       appBar: AppBar(
