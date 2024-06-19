@@ -113,11 +113,6 @@ ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("error:$error"
                   onPressed: _login,
                   child: const Text('Login'),
                 ),
-                const SizedBox(height: 20),
-                if (userDetails.isNotEmpty) ...[
-                  Text('Logged in as: ${userDetails['name']}'),
-                  Text('Phone: ${userDetails['phone']}'),
-                ],
               ],
             ),
           ),

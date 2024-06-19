@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:ayurvedic_centre/screens/reg_patient.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
@@ -53,23 +54,48 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Patients'),
+        title: Text('Home'),
+        backgroundColor: Colors.green.shade100,
       ),
-      body: patients.isEmpty
-          ? Center(child: CircularProgressIndicator())
-          : ListView.builder(
-        itemCount: patients.length,
-        itemBuilder: (ctx, index) => ListTile(
-          title: Text('Name:${patients[index].name}'),
-          subtitle: Text('Address:${patients[index].address}'),
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => PatientDetailsScreen(patient: patients[index]),
+      body: Column(
+        children: [
+          SizedBox(height: 20), // Add spacing
+         Row(
+           mainAxisAlignment: MainAxisAlignment.spaceAround,
+           children: [
+             Text(
+               'Patient List',
+               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+             ),
+             ElevatedButton(
+               onPressed: () {
+Navigator.push(context, MaterialPageRoute(builder: (context)=>RegisterPatientScreen()));
+               },
+               child: Text('Register'),
+             ),
+           ],
+         ),
+          SizedBox(height: 20), // Add spacing
+          Expanded(
+            child: patients.isEmpty
+                ? Center(child: CircularProgressIndicator())
+                : ListView.builder(
+              itemCount: patients.length,
+              itemBuilder: (ctx, index) => ListTile(
+                leading: Icon(Icons.person),
+                title: Text('Name: ${patients[index].name}'),
+                subtitle: Text('Address: ${patients[index].address}'),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => PatientDetailsScreen(patient: patients[index]),
+                    ),
+                  );
+                },
               ),
-            );
-          },
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }
