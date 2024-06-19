@@ -9,7 +9,7 @@ class BranchProvider with ChangeNotifier {
   List<Branch> get branches => _branches;
 
   Future<void> fetchBranches(String token) async {
-    final url = 'https://flutter-amr.noviindus.in/api/branchList';
+    final url = 'https://flutter-amr.noviindus.in/api/BranchList';
     final response = await http.get(
       Uri.parse(url),
       headers: {
@@ -18,8 +18,9 @@ class BranchProvider with ChangeNotifier {
     );
 
     if (response.statusCode == 200) {
-      final List<dynamic> data = json.decode(response.body);
-      _branches = data.map((branchData) => Branch.fromJson(branchData)).toList();
+      final Map<String, dynamic> jsonData = json.decode(response.body);
+      final List<dynamic> branchesData = jsonData['branches'];
+      _branches = branchesData.map((branchData) => Branch.fromJson(branchData)).toList();
       notifyListeners();
     } else {
       throw Exception('Failed to load branches');

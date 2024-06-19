@@ -9,7 +9,7 @@ class TreatmentProvider with ChangeNotifier {
   List<Treatment> get treatments => _treatments;
 
   Future<void> fetchTreatments(String token) async {
-    final url = 'https://flutter-amr.noviindus.in/api/treatmentList';
+    final url = 'https://flutter-amr.noviindus.in/api/TreatmentList';
     final response = await http.get(
       Uri.parse(url),
       headers: {

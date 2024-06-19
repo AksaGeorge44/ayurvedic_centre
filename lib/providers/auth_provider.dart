@@ -7,6 +7,10 @@ class AuthProvider with ChangeNotifier {
   Map<String, dynamic> _userDetails = {};
 
   String get token => _token;
+  void setToken(String token) {
+    _token = token;
+    notifyListeners();
+  }
   Map<String, dynamic> get userDetails => _userDetails;
 
   Future<void> login(String username, String password) async {

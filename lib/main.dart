@@ -1,3 +1,4 @@
+import 'package:ayurvedic_centre/screens/branch_screen.dart';
 import 'package:ayurvedic_centre/screens/home.dart';
 import 'package:ayurvedic_centre/screens/login.dart';
 import 'package:ayurvedic_centre/screens/reg_patient.dart';
@@ -33,6 +34,8 @@ class MyApp extends StatelessWidget {
           routes: {
             HomeScreen.routeName: (ctx) => HomeScreen(),
             RegisterPatientScreen.routeName: (ctx) => RegisterPatientScreen(),
+            BranchScreen.routeName: (ctx) => BranchScreen(),
+
           },
         ),
       ),

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:ayurvedic_centre/screens/drawer_screen.dart';
 import 'package:ayurvedic_centre/screens/reg_patient.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -31,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final response = await http.get(
         url,
         headers: {
-          'Authorization': 'Bearer $token', // Add the token to the headers
+          'Authorization': 'Bearer $token',
         },
       );
 
@@ -57,15 +58,16 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text('Home'),
         backgroundColor: Colors.green.shade100,
       ),
+      drawer: MyDrawer(),
       body: Column(
         children: [
-          SizedBox(height: 20), // Add spacing
+          SizedBox(height: 20),
          Row(
            mainAxisAlignment: MainAxisAlignment.spaceAround,
            children: [
              Text(
                'Patient List',
-               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
              ),
              ElevatedButton(
                onPressed: () {
@@ -75,7 +77,15 @@ Navigator.push(context, MaterialPageRoute(builder: (context)=>RegisterPatientScr
              ),
            ],
          ),
-          SizedBox(height: 20), // Add spacing
+          SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Click on each to get full details',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(height: 20),
           Expanded(
             child: patients.isEmpty
                 ? Center(child: CircularProgressIndicator())
