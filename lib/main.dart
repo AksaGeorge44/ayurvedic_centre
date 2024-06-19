@@ -15,24 +15,26 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AuthProvider()),
-        ChangeNotifierProvider(create: (_) => PatientProvider()),
-        ChangeNotifierProvider(create: (_) => BranchProvider()),
-        ChangeNotifierProvider(create: (_) => TreatmentProvider()),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Ayurvedic Centre',
-        theme: ThemeData(
-          primarySwatch: Colors.green,
+    return SafeArea(
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => AuthProvider()),
+          ChangeNotifierProvider(create: (_) => PatientProvider()),
+          ChangeNotifierProvider(create: (_) => BranchProvider()),
+          ChangeNotifierProvider(create: (_) => TreatmentProvider()),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Ayurvedic Centre',
+          theme: ThemeData(
+            primarySwatch: Colors.green,
+          ),
+          home: LoginScreen(),
+          routes: {
+            HomeScreen.routeName: (ctx) => HomeScreen(),
+            RegisterPatientScreen.routeName: (ctx) => RegisterPatientScreen(),
+          },
         ),
-        home: LoginScreen(),
-        routes: {
-          HomeScreen.routeName: (ctx) => HomeScreen(),
-          RegisterPatientScreen.routeName: (ctx) => RegisterPatientScreen(),
-        },
       ),
     );
   }

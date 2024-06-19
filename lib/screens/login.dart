@@ -4,6 +4,8 @@ import '../providers/auth_provider.dart';
 import 'home.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -41,8 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       );
-      print('error: $error');
-    }
+ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("error:$error")));    }
     setState(() {
       _isLoading = false;
     });
@@ -53,36 +54,74 @@ class _LoginScreenState extends State<LoginScreen> {
     final authProvider = Provider.of<AuthProvider>(context);
     final userDetails = authProvider.userDetails;
 
+    bool ispassword = true;
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: <Widget>[
-            TextField(
-              controller: _usernameController,
-              decoration: const InputDecoration(labelText: 'Username'),
+      body: Stack(
+        children: <Widget>[
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/bckgrndimg.jpg'),
+                fit: BoxFit.fill,
+              ),
             ),
-            TextField(
-              controller: _passwordController,
-              decoration: const InputDecoration(labelText: 'Password'),
-              obscureText: true,
+          ),
+          // Login form
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              children: <Widget>[
+                const SizedBox(height: 50),
+                const Text(
+                  "Login to book your appointment",
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.black, ),
+                ),
+                const SizedBox(height: 20),
+                TextField(
+                  controller: _usernameController,
+                  decoration: InputDecoration(
+                    labelText: 'Username',
+                    labelStyle: const TextStyle(color: Colors.black),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.8),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                TextField(
+                  obscureText: ispassword,
+                  controller: _passwordController,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    labelStyle: const TextStyle(color: Colors.black),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.8),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                _isLoading
+                    ? const CircularProgressIndicator()
+                    : ElevatedButton(
+                  onPressed: _login,
+                  child: const Text('Login'),
+                ),
+                const SizedBox(height: 20),
+                if (userDetails.isNotEmpty) ...[
+                  Text('Logged in as: ${userDetails['name']}'),
+                  Text('Phone: ${userDetails['phone']}'),
+                ],
+              ],
             ),
-            const SizedBox(height: 20),
-            _isLoading
-                ? const CircularProgressIndicator()
-                : ElevatedButton(
-              child: const Text('Login'),
-              onPressed: _login,
-            ),
-            const SizedBox(height: 20),
-            if (userDetails.isNotEmpty) ...[
-              Text('Logged in as: ${userDetails['name']}'),
-              Text('Phone: ${userDetails['phone']}'),
-              // Display other user details as needed
-            ],
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
