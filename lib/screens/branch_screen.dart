@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/branch_provider.dart';
 import '../providers/auth_provider.dart';
+
 class BranchScreen extends StatelessWidget {
   static const routeName = '/branches';
 
@@ -29,7 +30,7 @@ class BranchScreen extends StatelessWidget {
                   final branch = branchProvider.branches[index];
                   return ListTile(
                     title: Text(branch.name),
-                    subtitle: Text('Location: ${branch.location}\nPhone: ${branch.phone}\nPatients: ${branch.patientsCount}'),
+                    subtitle: Text('Location: ${branch.location}\nPhone: ${branch.phone}'),
                     isThreeLine: true,
                   );
                 },

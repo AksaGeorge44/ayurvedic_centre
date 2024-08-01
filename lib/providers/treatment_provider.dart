@@ -9,7 +9,7 @@ class TreatmentProvider with ChangeNotifier {
   List<Treatment> get treatments => _treatments;
 
   Future<void> fetchTreatments(String token) async {
-    final url = 'https://flutter-amr.noviindus.in/api/TreatmentList';
+    const url = 'https://flutter-amr.noviindus.in/api/TreatmentList';
     final response = await http.get(
       Uri.parse(url),
       headers: {
@@ -26,4 +26,38 @@ class TreatmentProvider with ChangeNotifier {
       throw Exception('Failed to load treatments');
     }
   }
+
+  Future<void> updateTreatment(String token, Treatment treatment) async {
+    const url = 'https://flutter-amr.noviindus.in/api/TreatmentUpdate';
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': 'Bearer $token',
+      },
+      body: {
+        'id': treatment.id.toString(),
+        'name': treatment.name,
+        'duration': treatment.duration,
+        'price': treatment.price,
+        'is_active': treatment.isActive.toString(),
+        'created_at': treatment.createdAt.toIso8601String(),
+        'updated_at': treatment.updatedAt.toIso8601String(),
+      },
+    );
+
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+
+    if (response.statusCode == 200) {
+      final index = _treatments.indexWhere((t) => t.id == treatment.id);
+      if (index != -1) {
+        _treatments[index] = treatment;
+        notifyListeners();
+      }
+    } else {
+      throw Exception('Failed to update treatment');
+    }
+  }
+
 }

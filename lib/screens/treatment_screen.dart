@@ -1,3 +1,4 @@
+import 'package:ayurvedic_centre/screens/update_treatment.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/treatment_provider.dart';
@@ -31,8 +32,16 @@ class TreatmentScreen extends StatelessWidget {
                   return ListTile(
                     title: Text(treatment.name),
                     subtitle: Text('Duration: ${treatment.duration}\nPrice: ${treatment.price}'),
-                    onTap: () {
-                    },
+                    trailing: IconButton(
+                      icon: Icon(Icons.edit),
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => EditTreatmentScreen(treatment: treatment),
+                          ),
+                        );
+                      },
+                    ),
                   );
                 },
               ),

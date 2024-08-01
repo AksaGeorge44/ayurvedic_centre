@@ -3,15 +3,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 class AuthProvider with ChangeNotifier {
+
   String _token = '';
   Map<String, dynamic> _userDetails = {};
 
   String get token => _token;
+
   void setToken(String token) {
     _token = token;
     notifyListeners();
   }
+
   Map<String, dynamic> get userDetails => _userDetails;
+
+
+  
 
   Future<void> login(String username, String password) async {
     const url = 'https://flutter-amr.noviindus.in/api/Login';
@@ -32,4 +38,5 @@ class AuthProvider with ChangeNotifier {
       throw Exception('Failed to login');
     }
   }
+
 }

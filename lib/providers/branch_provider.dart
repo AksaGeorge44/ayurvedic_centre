@@ -4,8 +4,8 @@ import 'dart:convert';
 import '../models/branch.dart';
 
 class BranchProvider with ChangeNotifier {
-  List<Branch> _branches = [];
 
+  List<Branch> _branches = [];
   List<Branch> get branches => _branches;
 
   Future<void> fetchBranches(String token) async {
@@ -22,8 +22,11 @@ class BranchProvider with ChangeNotifier {
       final List<dynamic> branchesData = jsonData['branches'];
       _branches = branchesData.map((branchData) => Branch.fromJson(branchData)).toList();
       notifyListeners();
-    } else {
+    }
+
+    else {
       throw Exception('Failed to load branches');
     }
+
   }
 }
